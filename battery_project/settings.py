@@ -30,8 +30,8 @@ SECRET_KEY = 'django-insecure-6v-a)7bz)u+w_8%mo5&wqs!axlp82)wm&6+y_#+-7ig@y#$n*m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['batteryproject-production.up.railway.app', 'https://batteryproject-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://batteryproject-production.up.railway.app']
+ALLOWED_HOSTS = ['batteryproject.up.railway.app', 'https://batteryproject.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://batteryproject.up.railway.app']
 
 # Application definition
 
