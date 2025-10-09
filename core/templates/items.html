@@ -1,0 +1,9 @@
+{% block content %}
+<p>All items</p>
+{% for item in items %}
+    <li>
+        <a href="item/{{item.id}}">{{item.name}}</a>
+    </li>
+{% endfor %}
+<button onclick="window.history.back()">Back</button>
+{% endblock  %}

@@ -7,8 +7,6 @@
 node_modules/
 dist/
 battery_project/.env
-static_collected/
-
 
 # Compiled Java class files
 *.class

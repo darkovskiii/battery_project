@@ -1,0 +1,18 @@
+{% block content %}
+<div class="header" style="display: flex;justify-content: space-between;">
+    <a href="{% url 'index' %}">Home</a>
+    <div>
+        {% if user.is_authenticated %}
+        <div style="display: flex;">
+            <a href="admin/">Admin</a>
+            <a href="logout/">Logout</a>
+        </div>
+        {% else %}
+        <div style="display: flex;">
+            <a href="register/">Register</a>
+            <a href="login/">Login</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock  %}

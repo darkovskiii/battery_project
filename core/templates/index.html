@@ -1,0 +1,19 @@
+{% include 'header.html' %}
+{% block content %}
+  {% if user.is_authenticated %}
+    <div>
+      <a href="add_item/">Add item</a>
+    </div>
+  {% endif %}
+  <div>
+    <a href="items/">All items</a>
+  </div>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        {% comment %} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> {% endcomment %}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% block content %}
+<p>Item details</p>
+<p>{{item.name}}</p>
+<p>{{item.price}}</p>
+<img src="{{item.image.url}}" alt="Item Image" style="max-width: 200px;">
+<div style="display: flex; flex-direction: column;">
+    <a href="{% url 'delete_item' item.id %}">Delete item</a>
+    <button onclick="window.history.back()">Back</button>
+</div>
+{% endblock %}
