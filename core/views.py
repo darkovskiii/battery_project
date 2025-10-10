@@ -22,14 +22,6 @@ def items(request):
 
 def item(request,id):
     item = Item.objects.get(id=id)
-    template = loader.get_template('item.html')
-    context = {
-        'item': item,
-    }
-    return HttpResponse(template.render(context,request))
-
-def buy_item(request,id):
-    item = Item.objects.get(id=id)
 
     host = request.get_host()
     paypal_dict = {
@@ -44,8 +36,15 @@ def buy_item(request,id):
         'cancel_return': 'https://{}{}'.format(host,reverse("payment_failed")),
     }
 
-    paypal_form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'paypal_form.html',{"paypal_form":paypal_form})
+    paypal_form = PayPalPaymentsForm(initial=paypal_dict)    
+    
+    template = loader.get_template('item.html')
+    context = {
+        'item': item,
+        'paypal_form':paypal_form,
+    }
+
+    return HttpResponse(template.render(context,request))
 
 
 def add_item(request):
