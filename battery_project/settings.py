@@ -140,8 +140,10 @@ GCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
 )
 
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-
 GS_CREDENTIALS = GCS_CREDENTIALS
+GS_DEFAULT_ACL = None
+GS_FILE_OVERWRITE = False
+
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
