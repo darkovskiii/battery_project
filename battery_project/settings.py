@@ -14,6 +14,8 @@ from pathlib import Path
 import environ
 import os
 import dj_database_url
+import json
+from google.oauth2 import service_account
 
 env = environ.Env()
 environ.Env.read_env()
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'users',
     'whitenoise.runserver_nostatic',
     'paypal.standard.ipn',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -129,8 +132,19 @@ STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Google Cloud Storage
+GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+
+GCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
+    json.loads(env("GCS_CREDENTIALS"))
+)
+
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
+GS_CREDENTIALS = GCS_CREDENTIALS
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
