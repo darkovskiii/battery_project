@@ -53,6 +53,20 @@ INSTALLED_APPS = [
     'storages',
 ]
 
+# Google Cloud Storage
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+
+GCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
+    json.loads(env("GCS_CREDENTIALS"))
+)
+
+GS_CREDENTIALS = GCS_CREDENTIALS
+GS_DEFAULT_ACL = None
+GS_FILE_OVERWRITE = False
+
+MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -132,19 +146,7 @@ STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Google Cloud Storage
-GS_BUCKET_NAME = env("GS_BUCKET_NAME")
 
-GCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
-    json.loads(env("GCS_CREDENTIALS"))
-)
-
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-GS_CREDENTIALS = GCS_CREDENTIALS
-GS_DEFAULT_ACL = None
-GS_FILE_OVERWRITE = False
-
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
