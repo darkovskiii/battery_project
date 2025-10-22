@@ -34,6 +34,10 @@ def item(request,id):
         'notify_url': 'https://{}{}'.format(host,reverse("paypal-ipn")),
         'return_url': 'https://{}{}'.format(host,reverse("payment_success")),
         'cancel_return': 'https://{}{}'.format(host,reverse("payment_failed")),
+        # uncomment for local testing
+        # 'notify_url': 'http://{}{}'.format(host,reverse("paypal-ipn")),
+        # 'return_url': 'http://{}{}'.format(host,reverse("payment_success")),
+        # 'cancel_return': 'http://{}{}'.format(host,reverse("payment_failed")),
     }
 
     paypal_form = PayPalPaymentsForm(initial=paypal_dict)    

@@ -5,12 +5,12 @@
         {% if user.is_authenticated %}
         <div style="display: flex;">
             <a href="admin/">Admin</a>
-            <a href="logout/">Logout</a>
+            <a href="{% url 'logout' %}">Logout</a>
         </div>
         {% else %}
         <div style="display: flex;">
-            <a href="register/">Register</a>
-            <a href="login/">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">Login</a>
         </div>
         {% endif %}
     </div>

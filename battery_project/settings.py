@@ -30,6 +30,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# uncomment for local testing
+# ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['batteryproject.up.railway.app', 'https://batteryproject.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://batteryproject.up.railway.app']
 
