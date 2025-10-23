@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # uncomment for local testing
 # ALLOWED_HOSTS = ['*']
@@ -62,7 +62,7 @@ GCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
 )
 
 GS_CREDENTIALS = GCS_CREDENTIALS
-GS_DEFAULT_ACL = None
+GS_DEFAULT_ACL = "publicRead"
 GS_FILE_OVERWRITE = False
 
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
