@@ -54,7 +54,6 @@ INSTALLED_APPS = [
 ]
 
 # Google Cloud Storage
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = env("GS_BUCKET_NAME")
 
 GCS_CREDENTIALS = service_account.Credentials.from_service_account_info(
@@ -66,6 +65,19 @@ GS_DEFAULT_ACL = "publicRead"
 GS_FILE_OVERWRITE = False
 
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "bucket_name": env("GS_BUCKET_NAME"),
+            "credentials": GCS_CREDENTIALS
+        }
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
